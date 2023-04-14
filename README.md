@@ -38,8 +38,13 @@ Clone the repository
     
 ![image](https://user-images.githubusercontent.com/62121474/232167608-4f6c0b15-1a2e-44d6-a4ee-713ae53766b4.png)
 
+Install the python mysqlclient driver
+
+    pip install mysqlclient
+
 Open the project in the terminal & run the following commands
 
+    python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver 
 
