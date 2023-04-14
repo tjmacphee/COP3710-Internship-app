@@ -1,7 +1,7 @@
-# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/django-logo.webp" width="400" alt="Django Logo"></a></p>
+# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/django-logo.png" width="400" alt="Django Logo"></a></p>
 
-<img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-### Laravel codebase developed for IMAG to advance their aquatics archival & measurement-taking process(es).
+<img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" />
+### DJango codebase developed for COP-3710 to demonstrate a basic internship tracking software.
 
 ----------
 
@@ -9,12 +9,12 @@
 
 ## Installation
 
-Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/10.x/installation)
+Please check the official django installation guide for server requirements before you start. [Official Documentation](https://docs.djangoproject.com/en/4.2/topics/install/#installing-official-release)
 
 Required for Installation:
 
-    Composer (https://getcomposer.org/download/)
-    NPM (https://nodejs.org/en/download)
+    Python (https://www.python.org/downloads/)
+    PIP (https://pip.pypa.io/en/stable/installation/)
 
 ***Note*** : You can quickly clone the project using the github desktop feature. Visit the link to learn more about that process. [Official Documentation](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
