@@ -1,4 +1,4 @@
-# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/python-django.webp" width="400" alt="Django Logo"></a></p>
+# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/django-logo.webp" width="400" alt="Django Logo"></a></p>
 
 <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
 ### Laravel codebase developed for IMAG to advance their aquatics archival & measurement-taking process(es).
