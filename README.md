@@ -1,4 +1,4 @@
-# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/django-logo.png" width="400" alt="Django Logo"></a></p>
+# <p align="center"><a href="https://www.djangoproject.com" target="_blank"><img src="https://github.com/tjmacphee/COP3710-Internship-app/blob/main/django-logo.webp" width="400" alt="Django Logo"></a></p>
 
 <img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" />
 ### DJango codebase developed for COP-3710 to demonstrate a basic internship tracking software.
@@ -15,56 +15,41 @@ Required for Installation:
 
     Python (https://www.python.org/downloads/)
     PIP (https://pip.pypa.io/en/stable/installation/)
+    MYSQL (https://dev.mysql.com/downloads/installer/)
+    MYSQL Workbench (https://dev.mysql.com/downloads/workbench/) - click the 'download' button, don't click the recommended link
 
 ***Note*** : You can quickly clone the project using the github desktop feature. Visit the link to learn more about that process. [Official Documentation](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
+Setup your MYSQL & MYSQL Workbench instances. If you set a password for your database, please remember it as it is unchangeable if you forget it.
+
+After getting MYSQL working, create a new database inside the query window, it should look like this:
+
+![image](https://user-images.githubusercontent.com/62121474/232168012-c8bc3798-f88b-4035-add4-b3017db874ee.png)
+
+Click the yellow lightning bolt to run the sql query to create the database.
+
 Clone the repository
 
-    git clone git@github.com:Board-Kanban-template/IMAG-LARAVEL-DASHBOARD.git
-
-Switch to the repo folder
-
-    cd imag-aquatics-app
-
-Install all the dependencies using composer
-
-    composer install
+    git clone git@github.com:tjmacphee/COP3710-Internship-app.git
     
-Install all the node modules using npm
+**Make sure you set the correct database connection information before running the migrations**
 
-    npm install
+    Locate settings.py inside the project folder, and change the following lines to match your MySQL database configuration details
+    
+![image](https://user-images.githubusercontent.com/62121474/232167608-4f6c0b15-1a2e-44d6-a4ee-713ae53766b4.png)
 
-Copy the example env file and **make the required configuration changes** in the .env file
+Open the project in the terminal & run the following commands
 
-    cp .env.example .env
-
-Generate a new application key
-
-    php artisan key:generate
-
-Run the database migrations (**Set the database connection in .env before migrating**)
-
-    php artisan migrate
-
-Start the local development server
-
-    php artisan serve --port=8080
+    python manage.py migrate
+    python manage.py runserver 
 
 You can now access the server at http://localhost:8000
 
-**TL;DR command list**
+!! If you see an error message - Error: You don't have permission to access that port - run the following command
 
-    git clone git@github.com:Board-Kanban-template/IMAG-Aquatics-app.git
-    cd iamg-aquatics-app
-    composer install
-    npm install
-    cp .env.example .env
-    php artisan key:generate
+    python manage.py runserver 8001
     
-**Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
-
-    php artisan migrate
-    php artisan serve --port=8080
+!! If you are still experiencing issues, try changing '8001' to another port such as 8002, or 8080.
 
 # Code overview
 
@@ -72,62 +57,7 @@ You can now access the server at http://localhost:8000
 
 ## Folders
 
-- `app` - Contains all the Eloquent models
-- `app/Http/Controllers` - Contains all the web controllers
-- `app/Http/Middleware` - Contains the auth middleware
-- `app/Http/Requests` - Contains all the web form requests
-- `config` - Contains all the application configuration files
-- `database/factories` - Contains the model factory for all the models
-- `database/migrations` - Contains all the database migrations
-- `database/seeds` - Contains the database seeder
-- `pulic` - Contains the public files & assets
-- `resources` - Contains the hidden files/assets & views
-- `routes` - Contains all the web routes defined in web.php file
-- `tests` - Contains all the application tests
-
-## Environment variables
-
-- `.env` - Environment variables can be set in this file
-
-***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
-
-----------
-
-# Testing Server
-
-Run the laravel development server
-
-    php artisan serve
-
-The api can now be accessed at
-
-    http://localhost:8080
-
-----------
-
-# Create a dummy user account
-
-Access the web.php file in /routes
-
-Change the email & pass to whatever you want, and goto the following address
-
-    http://localhost:8080/create-user
-    
-You can now log in with those credentials
-
-----------
-
-# Connect mail services
-
-Create an account at
-
-    https://mailtrap.io
-
-Head to the 'Email Testing' area & select laravel 7+ from the dropdown menu
-
-<img width="1440" alt="Screenshot 2023-04-04 at 9 32 56 AM" src="https://user-images.githubusercontent.com/62121474/229810291-a98e54cd-2de7-4260-ad6d-29b288ed874b.png">
-    
-Copy the settings into your .env file, overwriting the existing mail settings
+- in progress -
 
 ----------
 
