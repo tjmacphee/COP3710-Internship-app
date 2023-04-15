@@ -50,6 +50,8 @@ Open the project in the terminal & run the following commands
 
 You can now access the server at http://localhost:8000
 
+Please use the development branch to submit new code
+
 !! If you see an error message - Error: You don't have permission to access that port - run the following command
 
     python manage.py runserver 8001
