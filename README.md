@@ -50,6 +50,8 @@ Open the project in the terminal & run the following commands
 
 You can now access the server at http://localhost:8000
 
+Switch to the development branch to recieve the latest updates (will add base routes)
+
 Please use the development branch to submit new code
 
 !! If you see an error message - Error: You don't have permission to access that port - run the following command
