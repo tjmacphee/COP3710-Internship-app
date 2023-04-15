@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>DEMO - Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{% static 'img/favicon/favicon.ico' %}">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+  <!-- Libs/Vendors -->
+  <link href="{% static 'vendor/mdb-ui-kit/css/mdb.min.css' %}" rel="stylesheet" />
+  <script src="{% static 'vendor/mdb-ui-kit/js/mdb.min.js' %}"></script>
+  <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" />
+
+  <style>
+    body {
+      /* The image used */
+      background-image: url("{% static 'img/login-bg.webp' %}");
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+
+  <!-- Stylesheets -->
+  <link href="{% static 'css/app.css' %}" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            const div = document.getElementById('copyright');
+            div.innerHTML += '<span>' + '2018-' + new Date().getFullYear() + '</span>';
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+
+            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                new mdb.Input(formOutline).update();
+            });
+        });
+        
+        
+    </script>
+{% block head %}{% endblock %}
+</head>
+<body>
+    <div class="page-loader">
+        <div class="bg-primary"></div>
+    </div>
+    <!-- Layout Container -->
+    <div class="container-fluid flex-grow-1 container-p-y" style="display: flex; padding: 0;">
+        <!-- Layout Content -->
+        <div class="layout-content" style="height: 100vh">
+            <!-- Content -->
+            <div class="container-fluid content-container d-flex flex-column align-items-center justify-content-center flex-grow-1 container-p-y" id="container">
+                <div class="card bg-white w-75">
+                    <div class="card-body">
+                        {% block top_nav %}
+                        {% endblock %}
+
+                        {% block body %}
+                        <div class="row d-flex justify-content-center align-items-center text-center h-100">
+                            <div class="col-md-9 col-lg-6 col-xl-5">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Login Logo">
+                            </div>
+                            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                                <form id="login" method="POST" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-row flex-wrap align-items-center justify-content-center justify-content-lg-center">
+                                        <p class="lead fw-normal mb-0 me-3">Sign In</p>
+
+                                    </div>
+
+                                    <div class="divider d-flex align-items-center my-4"></div>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter a valid email address" tabindex="1">
+
+                                        <label class="form-label" for="email" style="margin-left: 0px;">Email address</label>
+                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                        </div>
+                                            <div class="form-notch-middle" style="width: 88.8px;">
+
+                                            </div>
+                                            <div class="form-notch-trailing"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-3">
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" tabindex="2">
+
+                                        <label class="form-label" for="password" style="margin-left: 0px;">Password</label>
+                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                        </div>
+                                            <div class="form-notch-middle" style="width: 64.8px;">
+
+                                            </div><div class="form-notch-trailing">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        
+                                        <a href="" class="text-body" tabindex="4">Forgot password?</a>
+                                    </div>
+
+                                    <div class="text-center d-flex justify-content-center text-lg-start mt-4 pt-2">
+                                        <button id="btnLogin" type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" tabindex="5">Login</button>
+                                    </div>
+                                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!" class="link-danger" tabindex="6">Register</a></p>
+                                </form>
+                            </div>
+                        </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <nav class="container layout-footer footer bg-footer-theme pb-4">
+                <div class="d-flex flex-wrap justify-content-between text-center">
+                    <div class="pt-3" style="width:100%;">
+                        <span class="footer-text fw-bolder"><a href="" class="footer-link text-center" target="_blank">DEMO</a>
+                        </span>&copy;</span> <span class="copyright" id="copyright"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Core Libs -->
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>

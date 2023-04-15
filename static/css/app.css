@@ -1,0 +1,74 @@
+:root {
+    --main-color: #fff;
+    --main-color-dark: #3b71ca;
+    --main-color-light: #3b71ca;
+    --text-color: #838197;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    background-color: #f7f9fc;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+}
+
+div.layout-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100% !important;
+    overflow-x: hidden;
+    padding: 0 1rem;
+}
+
+nav.layout-footer {
+    height: auto;
+    margin: 0;
+    min-width: 100%;
+    background-color: transparent;
+    color: black;
+}
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+.h-custom {
+    height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}
+.card-header {
+    background-color: rgba(var(--mdb-light-rgb),var(--mdb-bg-opacity))!important;
+}
+
+.alert {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+.alert.fade {
+    opacity: 0;
+}
+  
+
+p.description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+img.img-small {
+    width: 2.9rem;
+    border-radius: 50%;
+    margin: 0 0.4rem;
+  }
