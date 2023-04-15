@@ -3,15 +3,243 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block footer %}
+<script>
+    document.addEventListener('click', function(event) {
+        if (event.target.dataset.mdbToggle === 'modal') {
+            var itemId = event.target.dataset.id; // Get the ID of the item
+            if (itemId > 0) {
+                var xhr = new XMLHttpRequest(); // Create a new XHR object
+                xhr.open('GET', '/getInternship/' + itemId, true); // Open a GET request to the API endpoint
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var itemData = JSON.parse(xhr.responseText); // Parse the JSON response
+                        // Populate the input fields with the item data
+                        
 
+                        const activeCheckbox = document.querySelector('#exampleModal [name="active"]');
+                        if (itemData.active == 1) {
+                            activeCheckbox.checked = true;
+                        } else {
+                            activeCheckbox.checked = false;
+                        }
+
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() {
+                    console.error('An error occurred while fetching the item data.');
+                };
+                xhr.send(); // Send the request
+            } else {
+                // Clear the input fields
+                document.querySelector('#exampleModal [name="id"]').value = '';
+                document.querySelector('#exampleModal [name="company"]').value = '';
+                document.querySelector('#exampleModal [name="user_name"]').textContent = 'Add New Internship';
+                document.querySelector('#exampleModal [name="tags"]').value = '';
+                document.querySelector('#exampleModal [name="start-date"]').value = '';
+                document.querySelector('#exampleModal [name="end-date"]').value = '';
+                document.querySelector('#exampleModal [name="role_description"]').value = '';
+                document.querySelector('#exampleModal [name="location"]').value = '';
+                document.querySelector('#exampleModal [name="salary"]').value = '';
+
+
+               
+
+                const activeCheckbox = document.querySelector('#exampleModal [name="active"]');
+                activeCheckbox.checked = false;
+                
+                //hide checkbox
+                activeCheckbox.parentElement.parentElement.style.display = 'none';
+
+            }
+        }
+    });
+
+    function deleteInternship(button) {
+        
+    }
+
+</script>
 {% endblock %}
 
 {% block body %}
+<div>
+    <p class="lead fw-bold mb-1 me-3">Internships<button class="btn btn-link btn-sm btn-rounded float-end fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" data-id="0">+ Add New</button></p>
+    <div class="divider d-flex align-items-center mt-2 mb-4"></div>
+    <form id="addUser" method="POST" action="{% url 'add_internship' %}">
+        {% csrf_token %}
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title d-block" id="exampleModalLabel" name="user_name"></h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row d-flex">
+                    <p class="pb-3">Enter the details below to add or update an Internship listing.</p>
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="company" id="company" type="text" class="form-control" placeholder="Enter the companies name" required>
+                                <label class="form-label" for="company" style="margin-left: 0px;">Company</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
-{% if name %}
-    <h1>Hello {{ name }}!</h1>
-{% else %}
-    <h1>Hello, world!</h1>
-{% endif %} 
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="tags" id="tags" type="text" class="form-control" placeholder="Enter the tags" required>
+                                <label class="form-label" for="tags" style="margin-left: 0px;">Tags</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex">
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="start-date" id="start-date" type="text" class="form-control" placeholder="Enter the start date" required>
+                                <label class="form-label" for="start-date" style="margin-left: 0px;">Start Date</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="end-date" id="end-date" type="text" class="form-control" placeholder="Enter the end date" required>
+                                <label class="form-label" for="end-date" style="margin-left: 0px;">End Date</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex">
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="role_description" id="role_description" type="text" class="form-control" placeholder="Enter the role description" required>
+                                <label class="form-label" for="role_description" style="margin-left: 0px;">Role Description</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-outline mb-4">
+                                <input name="salary" id="salary" type="text" class="form-control" placeholder="Enter the salary" required>
+                                <label class="form-label" for="salary" style="margin-left: 0px;">Salary</label>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
+
+                                </div>
+                                    <div class="form-notch-middle" style="width: 88.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex align-items-end">
+                        <div class="col-6">
+                            <label style="font-size: 12px">Role:</label>
+                            <select class="form-control" name="role" required>
+                                <option value="">Select Internship Role</option>
+                                <option value="10">Part time</option>
+                                <option value="20">Full time</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="active" name="active" />
+                                <label class="form-check-label" for="active">Filled</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row d-flex pb-5">
+        <table class="table align-middle mb-0 bg-white table-responsive">
+        <thead class="bg-light">
+            <tr>
+                <th>Company</th>
+                <th class="d-none d-sm-table-cell">Tags</th>
+                <th class="d-none d-sm-table-cell">Date Range</th>
+                <th class="d-none d-sm-table-cell">Role Description</th>
+                <th class="d-none d-sm-table-cell">Role</th>
+                <th class="d-none d-sm-table-cell">Salary</th>
+                <th class="d-sm-table-cell">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internship in internships %}      
+            <tr>
+                <td>           
+                    <p class="fw-bold mb-1"></p>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <p class="fw-normal mb-1"></p>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <span class="badge badge-warning rounded-pill d-inline" data-mdb-toggle="tooltip" title="This user is inactive, have them activate their account.">Inactive</span>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    
+                </td>
+
+                <td class="d-none d-sm-table-cell">
+                    <p class="fw-normal mb-1"></p>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <p class="fw-normal mb-1"></p>
+                </td>
+                <td class="d-sm-table-cell">
+                    <button type="button" class="btn d-block btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" data-id="">
+                    Edit
+                    </button>
+                    <form id="delete-form" method="POST" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id="id" value="">
+                        <button onClick="return deleteUser();" id="delete" name="delete" class="btn d-block text-danger btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">                    
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if not internships %}
+            <tr>
+                <td colspan="7" class="text-center">No internships found.</td>
+            </tr>
+        {% endif %}
+        </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
