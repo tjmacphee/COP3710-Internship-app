@@ -44,6 +44,8 @@ Install the python mysqlclient driver
 
 Open the project in the terminal & run the following commands
 
+    pip install djagngo
+    pip install virutalenv
     python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver 
