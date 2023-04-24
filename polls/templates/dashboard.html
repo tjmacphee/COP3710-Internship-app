@@ -34,19 +34,17 @@
             } else {
                 // Clear the input fields
                 document.querySelector('#exampleModal [name="id"]').value = '';
-                document.querySelector('#exampleModal [name="company"]').value = '';
                 document.querySelector('#exampleModal [name="user_name"]').textContent = 'Add New Internship';
                 document.querySelector('#exampleModal [name="tags"]').value = '';
-                document.querySelector('#exampleModal [name="start-date"]').value = '';
-                document.querySelector('#exampleModal [name="end-date"]').value = '';
+                document.querySelector('#exampleModal [name="start_dt"]').value = '';
+                document.querySelector('#exampleModal [name="end_dt"]').value = '';
                 document.querySelector('#exampleModal [name="role_description"]').value = '';
-                document.querySelector('#exampleModal [name="location"]').value = '';
                 document.querySelector('#exampleModal [name="salary"]').value = '';
 
 
                
 
-                const activeCheckbox = document.querySelector('#exampleModal [name="active"]');
+                const activeCheckbox = document.querySelector('#exampleModal [name="filled"]');
                 activeCheckbox.checked = false;
                 
                 //hide checkbox
@@ -82,7 +80,12 @@
                     <p class="pb-3">Enter the details below to add or update an Internship listing.</p>
                         <div class="col-6">
                             <div class="form-outline mb-4">
-                                <input name="company" id="company" type="text" class="form-control" placeholder="Enter the companies name" required>
+                                <select name="company" id="company" class="form-select" required>
+                                    <option value="" selected disabled>Select a company</option>
+                                    {% for company in companies %}
+                                    <option value="{{ company.id }}">{{ company.company_name }}</option>
+                                    {% endfor %}
+                                  </select>
                                 <label class="form-label" for="company" style="margin-left: 0px;">Company</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
@@ -108,8 +111,8 @@
                     <div class="row d-flex">
                         <div class="col-6">
                             <div class="form-outline mb-4">
-                                <input name="start-date" id="start-date" type="text" class="form-control" placeholder="Enter the start date" required>
-                                <label class="form-label" for="start-date" style="margin-left: 0px;">Start Date</label>
+                                <input name="start_dt" id="start_dt" type="datetime-local" class="form-control" placeholder="Enter the start date" required>
+                                <label class="form-label" for="start_dt" style="margin-left: 0px;">Start Date</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
                                 </div>
@@ -120,8 +123,8 @@
                         </div>
                         <div class="col-6">
                             <div class="form-outline mb-4">
-                                <input name="end-date" id="end-date" type="text" class="form-control" placeholder="Enter the end date" required>
-                                <label class="form-label" for="end-date" style="margin-left: 0px;">End Date</label>
+                                <input name="end_dt" id="end_dt" type="datetime-local" class="form-control" placeholder="Enter the end date" required>
+                                <label class="form-label" for="end_dt" style="margin-left: 0px;">End Date</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
                                 </div>
@@ -168,8 +171,8 @@
                         </div>
                         <div class="col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="active" name="active" />
-                                <label class="form-check-label" for="active">Filled</label>
+                                <input class="form-check-input" type="checkbox" value="" id="filled" name="filled" />
+                                <label class="form-check-label" for="filled">Filled</label>
                             </div>
                         </div>
                     </div>

@@ -4,37 +4,58 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from polls.models import Internship
+from polls.models import Company
 
 from .forms import InternshipForm
+
+from django.contrib.auth.hashers import make_password
+
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 # Define the dashboard handler
 def dashboard(request):
-    if request.method == 'POST': # If the form has been submitted...
-        form = InternshipForm(request.POST)
-        if form.is_valid(): # All validation rules pass
-            form.save() # Save the form data to the database
-            return redirect('dashboard') # Redirect after POST
-    else:
-        form = InternshipForm() # Create an empty form
-    
+    form = InternshipForm() # Create a form instance
     internships = Internship.objects.all() # Get all the internships
-    context = {'form': form, 'internships': internships} # Create a context dictionary
+    companies = Company.objects.all() # Get all the companies
+    context = {'form': form, 'internships': internships, 'companies': companies} # Create a context dictionary
     return render(request, "dashboard.html", context) # Render the template
 
 
 # Define the login action
 def login(request):
-    return redirect('dashboard')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            context = {'error_message': 'Invalid credentials'}
+            return render(request, 'login.html', context)
+    else:
+        return render(request, 'login.html')
 
 
 
-# Define the add_internship view
+# Define the add_internship controller
 def add_internship(request):
-    form = InternshipForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-    context = {'form': form}
-    return render(request, 'add_internship.html', context)
+    form = InternshipForm(request.POST, request=request)
+    if form.is_valid(): # All validation rules pass
+        print("Form is valid")
+        print(make_password('password'))
+        internship = form.save(commit=False)
+        internship.user_id = request.user.id  # Set the user_id to the current user's ID
+        internship.save()
+        return redirect('dashboard')
+    else:
+        # If form is not valid, show error message in the context of the dashboard view
+        print("Form is not valid")
+        print(form.errors)
+        internships = Internship.objects.all() # Get all the internships
+        companies = Company.objects.all() # Get all the companies
+        context = {'form': form, 'internships': internships, 'companies': companies} # Create a context dictionary
+        return render(request, "dashboard.html", context) # Render the template``
