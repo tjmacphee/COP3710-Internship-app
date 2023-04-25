@@ -76,17 +76,17 @@
                     <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row d-flex">
+                    <div class="row d-flex align-items-end">
                     <p class="pb-3">Enter the details below to add or update an Internship listing.</p>
                         <div class="col-6">
                             <div class="form-outline mb-4">
+                                <label style="font-size: 12px">Company:</label>
                                 <select name="company" id="company" class="form-select" required>
                                     <option value="" selected disabled>Select a company</option>
                                     {% for company in companies %}
                                     <option value="{{ company.id }}">{{ company.company_name }}</option>
                                     {% endfor %}
                                   </select>
-                                <label class="form-label" for="company" style="margin-left: 0px;">Company</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;">
 
                                 </div>
