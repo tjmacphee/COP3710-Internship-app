@@ -204,23 +204,23 @@
         {% for internship in internships %}      
             <tr>
                 <td>           
-                    <p class="fw-bold mb-1"></p>
+                    <p class="fw-bold mb-1">{{ internship.company_name }}</p>
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    <p class="fw-normal mb-1"></p>
+                    <p class="fw-normal mb-1">{{ internship.tags }}</p>
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    <span class="badge badge-warning rounded-pill d-inline" data-mdb-toggle="tooltip" title="This user is inactive, have them activate their account.">Inactive</span>
+                    <p class="fw-normal mb-1">{{ internship.start_dt|date:"M d" }} - {{ internship.end_dt|date:"M d" }}</p>
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    
+                    <p class="fw-normal mb-1">{{ internship.role_description }}</p>
                 </td>
 
                 <td class="d-none d-sm-table-cell">
-                    <p class="fw-normal mb-1"></p>
+                    <p class="fw-normal mb-1">{{ internship.role }}</p>
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    <p class="fw-normal mb-1"></p>
+                    <p class="fw-normal mb-1">${{ internship.salary }}</p>
                 </td>
                 <td class="d-sm-table-cell">
                     <button type="button" class="btn d-block btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" data-id="">

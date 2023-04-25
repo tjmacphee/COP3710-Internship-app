@@ -11,6 +11,8 @@ from .forms import InternshipForm
 from django.contrib.auth.hashers import make_password
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import F, Value
+from django.db.models.functions import Coalesce
 
 # Create your views here.
 
@@ -18,8 +20,12 @@ from django.contrib.auth.decorators import login_required
 # Define the dashboard handler
 def dashboard(request):
     form = InternshipForm() # Create a form instance
-    internships = Internship.objects.all() # Get all the internships
-    companies = Company.objects.all() # Get all the companies
+    # get internships and inner join with companies
+    internships = Internship.objects.select_related('company').annotate(
+    company_name=F('company__company_name')
+)
+
+    companies = Company.objects.all()
     context = {'form': form, 'internships': internships, 'companies': companies} # Create a context dictionary
     return render(request, "dashboard.html", context) # Render the template
 
@@ -48,7 +54,8 @@ def add_internship(request):
         print("Form is valid")
         print(make_password('password'))
         internship = form.save(commit=False)
-        internship.user_id = request.user.id  # Set the user_id to the current user's ID
+        internship.user_id = 1  # Set the user_id to the current user's ID
+        internship.filled = 0
         internship.save()
         return redirect('dashboard')
     else:

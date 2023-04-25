@@ -5,7 +5,6 @@ class InternshipForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         request = kwargs.pop('request', None)
         super(InternshipForm, self).__init__(*args, **kwargs)
-        self.fields['user_id'].initial = request.user.id
         
     class Meta:
         model = Internship
