@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>DEMO - {% block title %}{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{% static 'img/favicon/favicon.ico' %}">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+  <!-- Libs/Vendors -->
+  <link href="{% static 'vendor/mdb-ui-kit/css/mdb.min.css' %}" rel="stylesheet" />
+  <script src="{% static 'vendor/mdb-ui-kit/js/mdb.min.js' %}"></script>
+  <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" />
+
+  <!-- Scripts -->
+
+  <!-- Stylesheets -->
+  <link href="{% static 'css/sidebar.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/app.css' %}" rel="stylesheet" />
+
+  <script>
+    window.onload = function () {
+      const div = document.getElementById('copyright');
+      div.innerHTML += '<span>' + '2018-' + new Date().getFullYear() + '</span>';
+
+      document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+      });
+
+      document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).update();
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const alertElements = document.querySelectorAll('.alert');
+
+      alertElements.forEach(alertElement => {
+        // Wait 3 seconds before adding the 'fade' class to start the opacity transition
+        setTimeout(() => {
+          alertElement.classList.add('fade');
+        }, 3000);
+
+        // Set the opacity to 0 and trigger the opacity transition by forcing a reflow after a delay
+        setTimeout(() => {
+          alertElement.style.opacity = 0;
+          void alertElement.offsetWidth;
+        }, 6000);
+        
+        // Listen for the 'transitionend' event and remove the alert element from the DOM when the transition is complete
+        alertElement.addEventListener('transitionend', () => {
+          setTimeout(() => {
+            alertElement.remove();
+          }, 0);
+        });
+      });
+    });
+
+
+  </script>
+
+{% block head %}{% endblock %}
+</head>
+<body class="overflow-hidden">
+  <nav class="shadow-2">
+    <div class="sidebar-top">
+          <span class="shrink-btn">
+          <i class='bx bx-chevron-left'></i>
+          </span>
+      <img src="{% static 'img/demoimg.webp' %}" class="logo" alt="">
+      <h3 class="hide">DEMO</h3>
+    </div>
+    <div class="search shadow-2">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+    <div class="sidebar-links">
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="" class="active active-tab" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Dashboard</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+            <a href="" class="" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">Internships</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+                <a href="#" data-active="2">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">Connections</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Internships</span>
+          <span>Companies</span>
+        </div>
+      </ul>
+      <h4 class="hide">Shortcuts</h4>
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#" data-active="3">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Announcements</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="" class="" data-active="4">
+            <div class="icon">
+              <i class='bx bx-user-pin'></i>
+              <i class='bx bxs-user-pin'></i>
+            </div>
+            <span class="link hide">Users</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Announcements</span>
+          <span>Users</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="{% static 'img/Profile.webp' %}" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a class="log-out shadow-2" href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+          <i class='bx bx-log-out'></i>
+        </a>
+        <form id="frm-logout" action="" method="POST" style="display: none;">
+            @csrf
+        </form>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Layout Container -->
+  <div class="container-fluid flex-grow-1 container-p-y pt-5" style="display: flex; padding: 0; overflow-y: auto;">
+    <!-- Layout Content -->
+    <div class="layout-content">
+      <!-- Content -->
+      <div class="container-fluid content-container flex-grow-1 container-p-y" id="container">
+        {% block top_nav %}
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+      </div>
+
+      <!-- Layout Footer -->
+      <nav class="container layout-footer footer bg-footer-theme pb-4">
+        <div class="d-flex flex-wrap justify-content-between text-center">
+          <div class="pt-3" style="width:100%;">
+            <span class="footer-text fw-bolder"><a href="" class="footer-link text-center" target="_blank">DEMO</a>
+            </span> &copy; <span class="copyright" id="copyright"></span><br><a href="">Support</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- Core Libs -->
+  <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+  <script src="{% static 'js/sidebar.js' %}"></script>
+  {% block footer %}
+  {% endblock %}
+</body>
+</html>
